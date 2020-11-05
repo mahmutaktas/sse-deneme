@@ -1,5 +1,4 @@
-from werkzeug.serving import run_simple
-
-import app
-
-run_simple('localhost', 8085, application=app, use_reloader=True)
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/backend/")
