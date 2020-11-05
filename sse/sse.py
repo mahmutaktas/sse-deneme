@@ -121,7 +121,10 @@ if __name__ == '__main__':
 
     app = flask.Flask(__name__, static_folder='static', static_url_path='')
 
-    app.config['CORS_HEADERS'] = 'Content-Type'
+    app.config['CORS_ALLOW_HEADERS'] = '*'
+    app.config['CORS_ORIGINS'] = '*'
+    app.config['CORS_SUPPORTS_CREDENTIALS'] = False
+    app.config['CORS_METHODS'] = ["GET", "HEAD", "POST", "OPTIONS", "PUT", "PATCH" "DELETE"]
 
     cors = CORS(app)
 
