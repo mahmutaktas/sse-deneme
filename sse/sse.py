@@ -117,6 +117,7 @@ if __name__ == '__main__':
     import cgi
     import flask
     from flask_cors import CORS
+    from flask_cors import cross_origin
     publisher = Publisher()
 
     app = flask.Flask(__name__, static_folder='static', static_url_path='')
@@ -130,6 +131,7 @@ if __name__ == '__main__':
 
 
     @app.route('/publish', methods=['POST'])
+    @cross_origin()
     def publish():
         sender_username = flask.request.form['username']
         chat_message = flask.request.form['message']
@@ -146,12 +148,14 @@ if __name__ == '__main__':
         return ''
 
     @app.route('/subscribe')
+    @cross_origin()
     def subscribe():
         username = flask.request.args.get('username')
         return flask.Response(publisher.subscribe(properties=username),
                               content_type='text/event-stream')
 
     @app.route('/')
+    @cross_origin()
     def root():
         return app.send_static_file('chat.html')
 
