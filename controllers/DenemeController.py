@@ -14,7 +14,7 @@ def get_raw_price_from_external_api():
 
     sched = BackgroundScheduler(daemon=True)
 
-    sched.add_job(DenemeServices.deneme_function, 'interval', seconds=1)
+    sched.add_job(DenemeServices.deneme_function, 'interval', seconds=60)
 
     sched.start()
 
